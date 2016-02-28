@@ -1,0 +1,7 @@
+#!/bin/sh
+
+aws iam upload-server-certificate \
+  --server-certificate-name derrickpetzold-com  \
+  --certificate-body file://cert \
+  --private-key file://key \
+  --certificate-chain file://inter-cert

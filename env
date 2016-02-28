@@ -1,0 +1,66 @@
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+
+export TF_VAR_project_name=""
+export TF_VAR_remote_state_bucket=""
+export TF_VAR_key_file=""
+export TF_VAR_aws_region="us-west-2"
+export TF_VAR_docker_image=""
+export TF_VAR_public_key=""
+
+# VPC
+
+export TF_VAR_vpc_id=""
+export TF_VAR_public_subnet_id=""
+export TF_VAR_private_subnet_id=""
+export TF_VAR_ssl_certificate_id=""
+
+export TF_VAR_aws_access_key="${AWS_ACCESS_KEY_ID}"
+export TF_VAR_aws_secret_key="${AWS_SECRET_ACCESS_KEY}"
+
+export TF_VAR_ecr_remote_state_key="ecr-terraform.tfstate"
+export TF_VAR_ecs_remote_state_key="ecs-terraform.tfstate"
+export TF_VAR_vpc_remote_state_key="vpc-terraform.tfstate"
+
+export TF_VAR_key_name="${TF_VAR_project_name}-ecs"
+export TF_VAR_aws_access_key=${AWS_ACCESS_KEY_ID}
+export TF_VAR_aws_secret_key=${AWS_SECRET_ACCESS_KEY}
+export TF_VAR_host_port=80
+export TF_VAR_container_port=9000
+
+# ECS
+
+export TF_VAR_ecs_cluster_name="${TF_VAR_project_name}"
+
+# ElastiCache
+
+export TF_VAR_elasticache_cache_name="${TF_VAR_project_name}"
+
+# RDS
+
+export TF_VAR_rds_allocated_storage="5"
+export TF_VAR_rds_engine="postgres"
+export TF_VAR_rds_engine_version="9.4.5"
+export TF_VAR_rds_instance_class="db.t1.micro"
+
+export TF_VAR_database_name="${TF_VAR_project_name}"
+export TF_VAR_database_user="${TF_VAR_project_name}"
+export TF_VAR_database_password=""
+
+export TF_VAR_keypair_name=${TF_VAR_project_name}-ecs
+
+# Django specific
+
+export TF_VAR_secure_ssl_redirect=False
+export TF_VAR_secret_key=""
+export TF_VAR_settings_module=config.settings.production
+
+export TF_VAR_static_url=/static/
+export TF_VAR_compress_enabled=True
+export TF_VAR_compress_offline=True
+export TF_VAR_compress_root=/app
+export TF_VAR_storage_bucket_name=""
+export TF_VAR_database_url="postgres://${TF_VAR_database_user}:${TF_VAR_database_password}@db.internal/${TF_VAR_database_name}"
+export TF_VAR_sentry_dsn=""
+export TF_VAR_sendgrid_username=""
+export TF_VAR_sendgrid_password=""

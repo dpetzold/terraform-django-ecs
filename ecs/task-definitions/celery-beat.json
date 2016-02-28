@@ -1,0 +1,75 @@
+[
+    {
+      "name": "celery-beat",
+      "image": "${docker_image}",
+      "cpu": 100,
+      "memory": 100,
+      "volumesFrom": [],
+      "links": [],
+      "mountPoints": [],
+      "essential": true,
+      "command": ["newrelic-admin", "run-program", "celery", "-A", "derrickpetzold.celery", "beat", "--loglevel=INFO"],
+      "environment": [
+        {
+          "name": "BROKER_URL",
+          "value": "${broker_url}"
+        },
+        {
+          "name": "DJANGO_SECURE_SSL_REDIRECT",
+          "value": "${secure_ssl_redirect}"
+        },
+        {
+          "name": "DJANGO_SECRET_KEY",
+          "value": "${secret_key}"
+        },
+        {
+          "name": "DJANGO_SETTINGS_MODULE",
+          "value": "${settings_module}"
+        },
+        {
+          "name": "DJANGO_AWS_ACCESS_KEY_ID",
+          "value": "${aws_access_key}"
+        },
+        {
+          "name": "DJANGO_AWS_SECRET_ACCESS_KEY",
+          "value": "${aws_secret_key}"
+        },
+        {
+          "name": "DJANGO_AWS_REGION",
+          "value": "${aws_region}"
+        },
+        {
+          "name": "DJANGO_AWS_STORAGE_BUCKET_NAME",
+          "value": "${storage_bucket_name}"
+        },
+        {
+          "name": "DATABASE_URL",
+          "value": "${database_url}"
+        },
+        {
+          "name": "SENTRY_DSN",
+          "value": "${sentry_dsn}"
+        },
+        {
+          "name": "SENDGRID_USERNAME",
+          "value": "${sendgrid_username}"
+        },
+        {
+          "name": "SENDGRID_PASSWORD",
+          "value": "${sendgrid_password}"
+        },
+        {
+          "name": "NEW_RELIC_LICENSE_KEY",
+          "value": "${newrelic_license_key}"
+        },
+        {
+          "name": "NEW_RELIC_CONFIG_FILE",
+          "value": "${newrelic_config_file}"
+        },
+        {
+          "name": "REDIS_HOST",
+          "value": "${redis_host}"
+        }
+     ]
+  }
+]
