@@ -2,29 +2,33 @@
 terraform-django-ecs
 ====================
 
+```
+If you are just beginning with your container strategy I now recommend (April 2018) using EKS over ECS.
+```
+
 Deploy a dockerized Django Application to AWS in a VPC using terraform, EC2 Container
 Registry and EC2 Container Service.
 
 Includes:
 
-* Virutal Private Cloud
+* Virtual Private Cloud
 * Internal DNS
 * Private S3 bucket for container registry data
-* Private ECR Docker respository
+* Private ECR Docker repository
 * ECS cluster, launch configuration and autoscaling group
-* RDS cluser
+* RDS cluster
 * ElastiCache cluster
-* EC2 instances to run ECS agenct on
-* ELB to distribute request accross the EC2 instances
+* EC2 instances to run ECS agent on
+* ELB to distribute request across the EC2 instances
 * uWSGI task definition
 * Celery task definition
 * Celery beat task definition
 
-This project is split into three seperate terraform projects. So they can be
-built and destoryed independant of each other.
+This project is split into three separate terraform projects. So they can be
+built and destroyed independent of each other.
 
 ecr
-  Builds the private ECR Docker respository. Outputs the registry endpoint.
+  Builds the private ECR Docker repository. Outputs the registry endpoint.
 
 vpc
   Builds the VPC, the RDS cluster, ElastiCache cluster and their security
@@ -37,8 +41,8 @@ vpc
 
 ecs
   Builds the ECS cluster with 2 micro instances and uWSGI and Celery task
-  definitions and the nesscary security groups and IAM roles. Outputs the
-  elb endpoint.
+  definitions and the necessary security groups and IAM roles. Outputs the
+  ELB endpoint.
 
 
 Prerequisites
@@ -64,33 +68,35 @@ Usage
 
 3. Build the ECR registry::
 
-    ./build ecr
+    ./apply ecr
+
+    It will output the docker repository url used below.
 
 4. Upload your docker image to it::
 
     cd project
     `aws ecr get-login --region us-east-1`
-    docker build -t derrickpetzold .
-    docker tag derrickpetzold:latest 184217501385.dkr.ecr.us-east-1.amazonaws.com/derrickpetzold:latest
-    docker push 184217501385.dkr.ecr.us-east-1.amazonaws.com/derrickpetzold:latest
+    docker build -t project .
+    docker tag repo/project:version
+    docker push repo/project:version
 
 5. Update the env file with the ARN to the docker image::
 
-    TF_VAR_docker_image="184217501385.dkr.ecr.us-east-1.amazonaws.com/derrickpetzold:latest"
+    TF_VAR_docker_image="repo/project:version"
 
 6. Build the VPC::
 
-   ./build vpc
+   ./apply vpc
 
 7. Update the env file with the output::
 
-    TF_VAR_vpc_id="vpc-d077bdb4"
-    TF_VAR_public_subnet_id="subnet-a4cd10c0"
-    TF_VAR_private_subnet_id="subnet-1be3e042"
+    TF_VAR_vpc_id="vpc-????????"
+    TF_VAR_public_subnet_id="subnet-????????"
+    TF_VAR_private_subnet_id="subnet-????????"
 
 8. Build the ECS cluster::
 
-   ./build ecs
+   ./apply ecs
 
 9. Initialize your database. Get the hostname of one of the running EC2
    instances and make sure ssh from your host is allowed in the security
@@ -104,7 +110,7 @@ Usage
 
 9. Check the status of the cluster from the AWS console. Once the status of the
    task definition changes from PENDING to ACTIVE the instances will be added
-   to the ELB and your site should accessiable from the ELB endpoint returned
+   to the ELB and your site should accessible from the ELB endpoint returned
    from the build ecs command.
 
 
