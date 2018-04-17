@@ -6,7 +6,7 @@ terraform-django-ecs
 If you are just beginning with your container strategy I recommend (April 2018) using EKS over ECS.
 ```
 
-Deploy a dockerized Django Application to AWS in a VPC using terraform, EC2 Container
+Deploy a dockerized Django Application to AWS in a VPC using Terraform, EC2 Container
 Registry and EC2 Container Service.
 
 Includes:
@@ -19,12 +19,12 @@ Includes:
 * RDS cluster
 * ElastiCache cluster
 * EC2 instances to run ECS agent on
-* ELB to distribute request across the EC2 instances
+* ELB to distribute requests across the EC2 instances
 * uWSGI task definition
 * Celery task definition
 * Celery beat task definition
 
-This project is split into three separate terraform projects. So they can be
+This project is split into three separate Terraform projects. So they can be
 built and destroyed independent of each other.
 
 ECR
@@ -40,10 +40,8 @@ VPC
   Outputs the VPC id and the public and private subnets ids.
 
 ECS
-  Builds the ECS cluster with 2 micro instances and uWSGI and Celery task
-  definitions and the necessary security groups and IAM roles. Outputs the
-  ELB endpoint.
-
+  Builds the ECS cluster with 2 micro instances and uWSGI and Celery task definitions
+  and the necessary security groups and IAM roles. Outputs the ELB endpoint.
 
 Prerequisites
 -------------
@@ -75,8 +73,7 @@ Usage
 
     cd project
     `aws ecr get-login --region us-east-1`
-    docker build -t project .
-    docker tag repo/project:version
+    docker build -t repo/project:version .
     docker push repo/project:version
 
 5. Update the env file with the ARN to the docker image::
