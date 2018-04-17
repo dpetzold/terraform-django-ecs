@@ -2,7 +2,9 @@
 terraform-django-ecs
 ====================
 
-    If you are just beginning with your container strategy I recommend (April 2018) using EKS over ECS.
+```
+If you are just beginning with your container strategy I recommend (April 2018) using EKS over ECS.
+```
 
 Deploy a dockerized Django Application to AWS in a VPC using terraform, EC2 Container
 Registry and EC2 Container Service.
