@@ -218,7 +218,7 @@ variable "internal_zone_id" {
 }
 
 variable "admin_url" {
-  description = ""
+  description = "admin"
 }
 
 variable "allowed_hosts" {
