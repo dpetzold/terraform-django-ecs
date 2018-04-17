@@ -61,7 +61,6 @@ Usage
 2. Copy the sample env to .env and edit it with your information:: 
 
     TF_VAR_key_name=name of ssh key
-    TF_VAR_key_file=the ssh key file to use
     TF_VAR_aws_access_key=The AWS access key ID
     TF_VAR_aws_secret_key=The AWS secret key
     TF_VAR_project_name=The name of your project

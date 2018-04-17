@@ -61,11 +61,6 @@ variable "key_name" {
   default = ""
 }
 
-variable "key_file" {
-  description = "The ssh public key for using with the cloud provider."
-  default = ""
-}
-
 variable "host_port" {
   description = "The instance port"
   default = "5000"

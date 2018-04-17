@@ -3,7 +3,6 @@ export AWS_SECRET_ACCESS_KEY=""
 
 export TF_VAR_project_name=""
 export TF_VAR_remote_state_bucket=""
-export TF_VAR_key_file=""
 export TF_VAR_aws_region="us-west-2"
 export TF_VAR_docker_image=""
 export TF_VAR_public_key=""
