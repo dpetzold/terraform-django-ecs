@@ -27,19 +27,19 @@ Includes:
 This project is split into three separate terraform projects. So they can be
 built and destroyed independent of each other.
 
-ecr
+ECR
   Builds the private ECR Docker repository. Outputs the registry endpoint.
 
-vpc
+VPC
   Builds the VPC, the RDS cluster, ElastiCache cluster and their security
   groups. The DNS names for the clusters are:
       
-      * rds.internal
-      * redis.interal
+  * rds.internal
+  * redis.interal
 
   Outputs the VPC id and the public and private subnets ids.
 
-ecs
+ECS
   Builds the ECS cluster with 2 micro instances and uWSGI and Celery task
   definitions and the necessary security groups and IAM roles. Outputs the
   ELB endpoint.
