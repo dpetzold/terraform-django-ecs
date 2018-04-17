@@ -34,8 +34,8 @@ vpc
   Builds the VPC, the RDS cluster, ElastiCache cluster and their security
   groups. The DNS names for the clusters are:
       
-      rds.internal
-      redis.interal
+      * rds.internal
+      * redis.interal
 
   Outputs the VPC id and the public and private subnets ids.
 
