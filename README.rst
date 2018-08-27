@@ -42,11 +42,21 @@ ECS
 Prerequisites
 -------------
 
-* Terraform installed. Get it from [https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html) to grab the latest version.
-* An AWS account [http://aws.amazon.com/](http://aws.amazon.com/)
+* Terraform installed. Get it from
+  `https://www.terraform.io/downloads.html <https://www.terraform.io/downloads.html>`_ to grab the latest version.
+* An AWS account `http://aws.amazon.com/ <http://aws.amazon.com/>`_
 
 Usage
 -----
+
+Building the cluster is broken up into three operations:
+
+1) Provision the ECR regristry and upload the application docker image to it.
+2) Provision the VPC with RDS and ElastiCache.
+3) Provision the ECS cluster with the sevice and task definitions.
+
+
+The following steps will walk you through the process:
 
 1. Clone the repo::
 
