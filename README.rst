@@ -2,10 +2,6 @@
 terraform-django-ecs
 ====================
 
-```
-If you are just beginning with your container strategy I recommend (April 2018) using EKS over ECS.
-```
-
 Deploy a dockerized Django Application to AWS in a VPC using Terraform, EC2 Container
 Registry and EC2 Container Service.
 
@@ -33,7 +29,7 @@ ECR
 VPC
   Builds the VPC, the RDS cluster, ElastiCache cluster and their security
   groups. The DNS names for the clusters are:
-      
+
   * rds.internal
   * redis.interal
 
@@ -56,7 +52,7 @@ Usage
 
     git clone https://github.com/dpetzold/terraform-django-ecs.git
 
-2. Copy the sample env to .env and edit it with your information:: 
+2. Copy the sample env to .env and edit it with your information::
 
     TF_VAR_key_name=name of ssh key
     TF_VAR_aws_access_key=The AWS access key ID
@@ -96,7 +92,7 @@ Usage
 
 9. Initialize your database. Get the hostname of one of the running EC2
    instances and make sure ssh from your host is allowed in the security
-   group. Then scp your database dump and load it:: 
+   group. Then scp your database dump and load it::
 
     scp -i <your keypair> database.dump ec2-user@<hostname>
     ssh -i <your keypair> ec2-user@<hostname>
