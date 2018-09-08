@@ -1,9 +1,0 @@
-#!/bin/sh
-
-. ./.env
-
-MODULE=$1
-
-cd ${MODULE}
-
-terraform destroy 
