@@ -52,7 +52,7 @@ Usage
 Building the cluster is broken up into three operations:
 
 1) Provision the ECR regristry and upload the application docker image to it.
-2) Provision the VPC with RDS and ElastiCache.
+2) Provision the VPC with RDS and ElastiCache clusters and EC2 instances.
 3) Provision the ECS cluster with the sevice and task definitions.
 
 
