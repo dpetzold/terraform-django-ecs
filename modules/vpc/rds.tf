@@ -52,8 +52,7 @@ module "db" {
   # NOTE: Do NOT use 'user' as the value for 'username' as it throws:
   # "Error creating DB Instance: InvalidParameterValue: MasterUsername
   # user cannot be used as it is a reserved word used by the engine"
-  name = "db_${var.name}"
-
+  name = "${replace(var.name, "-", "_")}"
   username               = "${var.database_username}"
   password               = "${random_string.password.result}"
   port                   = "${var.database_port}"
