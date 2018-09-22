@@ -76,18 +76,24 @@ The following steps will walk you through the process:
 
     git clone https://github.com/dpetzold/terraform-django-ecs.git
 
-6. Start your terrform project::
-
-    mkdir -p <yourproject>/terraform
-    cp -R examples/vpc <yourproject>/terraform
-    cp -R examples/ecs <yourproject>/terraform
-
 2. Create the AWS key pair::
 
     aws ec2 create-key-pair --key-name ${PROJECT_NAME} \
         --output text --query KeyMaterial > ${PROJECT_NAME}
     chmod 400 ${PROJECT_NAME}
     mv ${PROJECT_NAME} ~/.ssh
+
+6. Start your terrform project::
+
+    mkdir -p <yourproject>/terraform
+    cp -R examples/vpc <yourproject>/terraform
+    cp -R examples/ecs <yourproject>/terraform
+
+8. Build the VPC and its associated resources::
+
+    cd <yourproject>/terraform/vpc
+    terraform plan
+    terraform apply
 
 4. Upload your docker image to to the ECR repository::
 
@@ -106,6 +112,8 @@ The following steps will walk you through the process:
 8. Build the ECS cluster::
 
     cd <yourproject>/terraform/ecs
+    terraform plan
+    terraform apply
 
 9. Initialize your database. Get the hostname of one of the running EC2
    instances and make sure ssh from your host is allowed in the security

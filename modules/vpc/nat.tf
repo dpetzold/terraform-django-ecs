@@ -136,5 +136,5 @@ module "nat" {
   route_table_identifier = "private"
   ssh_bastion_host       = "${aws_instance.bastion.public_ip}"
   ssh_bastion_user       = "ubuntu"
-  aws_key_location       = "${var.aws_key_location}"
+  aws_key_location       = "${file(var.aws_key_location)}"
 }
