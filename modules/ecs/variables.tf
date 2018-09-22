@@ -20,12 +20,12 @@ variable "public_key" {
 
 variable "aws_region" {
   description = "The AWS region to create resources in."
-  default = "us-west-2"
+  default     = "us-west-2"
 }
 
 variable "remote_state_bucket" {
   description = "The name of the s3 bucket to store the remote state in."
-  default = "terraform-state.example.com"
+  default     = "terraform-state.example.com"
 }
 
 variable "vpc_id" {
@@ -42,12 +42,12 @@ variable "private_subnet_id" {
 
 variable "ecs_remote_state_key" {
   description = "The name of the key to store the remote state in."
-  default = "vpc-terraform.tfstate"
+  default     = "vpc-terraform.tfstate"
 }
 
 variable "ecs_cluster_name" {
   description = "The name of the Amazon ECS cluster."
-  default = "default"
+  default     = "default"
 }
 
 /* ECS optimized AMIs per region */
@@ -64,7 +64,7 @@ variable "amis" {
 }
 
 variable "availability_zones" {
-  default = "us-east-2a,us-east-2c,us-east-2d"
+  default     = "us-east-2a,us-east-2c,us-east-2d"
   description = "The availability zones in this environment (must be a comma-deliminated list of availability zones with no spaces)"
 }
 
@@ -74,32 +74,33 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "The aws ssh key name."
-  default = ""
+  default     = ""
 }
 
 variable "host_port" {
   description = "The instance port"
-  default = "5000"
+  default     = "5000"
 }
 
 variable "container_port" {
   description = "The container port"
-  default = "5000"
+  default     = "5000"
 }
 
 variable "bastion_aws_region" {
   description = "The bastion region"
-  default = "us-west-2"
+  default     = "us-west-2"
 }
 
 variable "vpc_availability_zone" {
   description = "The vpc availability zone"
-  default = "us-west-2a,"
+  default     = "us-west-2a,"
 }
 
 # Ubuntu 14.04
 variable "bastion_aws_amis" {
   description = "The bastion amis"
+
   default = {
     us-west-2 = "ami-5189a661"
   }
@@ -107,17 +108,17 @@ variable "bastion_aws_amis" {
 
 variable "aws_autoscaling_group_min_size" {
   description = "The autoscaling group minimum size"
-  default = 2
+  default     = 2
 }
 
 variable "aws_autoscaling_group_max_size" {
   description = "The autoscaling group maximum size"
-  default = 10
+  default     = 10
 }
 
 variable "aws_autoscaling_group_desired_capacity" {
   description = "The autoscaling group desired capacity"
-  default = 2
+  default     = 2
 }
 
 variable "docker_image" {
@@ -227,20 +228,20 @@ variable "allowed_hosts" {
 
 variable "varnish_host_port" {
   description = ""
-  default = "8888"
+  default     = "8888"
 }
 
 variable "varnish_container_port" {
   description = ""
-  default = "80"
+  default     = "80"
 }
 
 variable "varnish_health_check_url" {
   description = ""
-  default = "/200/"
+  default     = "/200/"
 }
 
 variable "redis_host" {
   description = ""
-  default = "uwsgi.internal"
+  default     = "uwsgi.internal"
 }

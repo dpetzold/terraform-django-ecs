@@ -53,13 +53,14 @@ module "db" {
   # "Error creating DB Instance: InvalidParameterValue: MasterUsername
   # user cannot be used as it is a reserved word used by the engine"
   name = "${replace(var.name, "-", "_")}"
+
   username               = "${var.database_username}"
   password               = "${random_string.password.result}"
   port                   = "${var.database_port}"
   vpc_security_group_ids = ["${aws_security_group.database_sg.id}"]
 
-  maintenance_window     = "Mon:03:00-Mon:06:00"
-  backup_window          = "00:00-03:00"
+  maintenance_window = "Mon:03:00-Mon:06:00"
+  backup_window      = "00:00-03:00"
 
   # disable backups to create DB faster
   # must be enabled to support read replicas

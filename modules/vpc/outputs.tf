@@ -28,10 +28,8 @@ output "redis_endpoint" {
 }
 
 output "bastion_public_ip" {
-
   // value = "${var.enable_bastion ? element(aws_instance.bastion.*.public_ip, 0) : ""}"
   value = "${element(aws_instance.bastion.*.public_ip, 0)}"
-
 }
 
 output "nat_private_ips" {
