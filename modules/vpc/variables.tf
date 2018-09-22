@@ -8,8 +8,7 @@ variable "cidr" {
 }
 
 variable "azs" {
-  type    = "list"
-  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  type = "list"
 }
 
 variable "aws_key_name" {
@@ -68,7 +67,7 @@ variable "database_allocated_storage" {
 
 variable "database_engine_version" {
   description = "Database engine version"
-  default     = "9.6.3"
+  default     = "10.4"
 }
 
 variable "database_storage_encrypted" {
@@ -83,7 +82,7 @@ variable "database_backup_retention_period" {
 
 variable "database_family" {
   description = "Database family"
-  default     = "postgres9.6"
+  default     = "postgres10"
 }
 
 variable "database_read_replicas" {
@@ -93,6 +92,11 @@ variable "database_read_replicas" {
 
 variable "database_multi_az" {
   description = "Database multi az"
+  default     = "false"
+}
+
+variable "database_allow_major_version_upgrade" {
+  description = "Database allow major version upgrades"
   default     = "false"
 }
 

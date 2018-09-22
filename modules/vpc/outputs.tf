@@ -1,5 +1,9 @@
-output "lambda_subnet_ids" {
-  value = "${module.vpc.private_subnets}"
+output "repository.arn" {
+  value = "${aws_ecr_repository.repository.arn}"
+}
+
+output "repository.name" {
+  value = "${aws_ecr_repository.repository.name}"
 }
 
 output "default_security_group_id" {

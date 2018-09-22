@@ -42,7 +42,7 @@ resource "aws_elasticache_replication_group" "redis" {
   replication_group_description = "${var.name}-redis ${var.redis_engine_version}"
   number_cache_clusters         = "${var.redis_number_cache_clusters}"
   automatic_failover_enabled    = "${var.redis_automatic_failover_enabled}"
-  availability_zones            = "${slice(var.azs, 0, var.redis_number_cache_clusters)}"
+  availability_zones            = ["${slice(var.azs, 0, var.redis_number_cache_clusters)}"]
   engine                        = "redis"
   engine_version                = "${var.redis_engine_version}"
   maintenance_window            = "${var.redis_maintenance_window}"

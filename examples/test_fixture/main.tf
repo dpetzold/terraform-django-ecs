@@ -13,10 +13,11 @@ provider "template" {
 data "aws_availability_zones" "available" {}
 
 module "vpc" {
-  source           = "../../modules/vpc"
-  name             = "${var.project_name}"
-  aws_key_name     = "${var.project_name}"
-  aws_key_location = "${var.aws_key_location}"
-  enable_bastion   = true
-  azs              = ["${slice(data.aws_availability_zones.available, 0 2)}"]
+  source                               = "../../modules/vpc"
+  name                                 = "${var.project_name}"
+  aws_key_name                         = "${var.project_name}"
+  aws_key_location                     = "${var.aws_key_location}"
+  enable_bastion                       = true
+  azs                                  = ["${data.aws_availability_zones.available.names}"]
+  database_allow_major_version_upgrade = true
 }

@@ -14,8 +14,6 @@ Includes:
 * ECS cluster, launch configuration and autoscaling group
 * RDS cluster
 * ElastiCache cluster
-* EC2 instances to run ECS agent on
-* ELB to distribute requests across the EC2 instances
 * uWSGI task definition
 * Celery task definition
 * Celery beat task definition
@@ -42,9 +40,26 @@ ECS
 Prerequisites
 -------------
 
+This guide requires that you have terraform and the aws cli configured and
+working. See:
+
+
 * Terraform installed. Get it from
-  `https://www.terraform.io/downloads.html <https://www.terraform.io/downloads.html>`_ to grab the latest version.
+  `https://www.terraform.io/intro/getting-started/install.html <https://www.terraform.io/intro/getting-started/install.html>`_ to grab the latest version.
 * An AWS account `http://aws.amazon.com/ <http://aws.amazon.com/>`_
+* The AWS cli configured `https://docs.aws.amazon.com/cli/latest/userguide/installing.html <https://docs.aws.amazon.com/cli/latest/userguide/installing.html>`_
+
+
+    aws configure
+    export PROJECT_NAME="<project_name>"
+    export PROJECT_VERSION=`git rev-parse --short HEAD`
+
+To verify:
+
+    aws sts get-caller-identity
+    echo ${PROJECT_NAME}
+    echo ${PROJECT_VERSION}
+
 
 Usage
 -----
@@ -64,10 +79,10 @@ The following steps will walk you through the process:
 
 2. Copy the sample env to .env and edit it with your information::
 
-    TF_VAR_key_name=name of ssh key
-    TF_VAR_aws_access_key=The AWS access key ID
-    TF_VAR_aws_secret_key=The AWS secret key
-    TF_VAR_project_name=The name of your project
+    aws ec2 create-key-pair --key-name ${PROJECT_NAME} \
+        --output text --query KeyMaterial > ${PROJECT_NAME}
+    chmod 400 ${PROJECT_NAME}
+    mv ${PROJECT_NAME} ~/.ssh
 
 3. Build the ECR registry::
 

@@ -41,13 +41,14 @@ module "db" {
   identifier = "postgres-${var.name}"
   family     = "${var.database_family}"
 
-  engine            = "postgres"
-  engine_version    = "${var.database_engine_version}"
-  instance_class    = "${var.database_instance_type}"
-  allocated_storage = "${var.database_allocated_storage}"
-  storage_encrypted = "${var.database_storage_encrypted}"
-  subnet_ids        = ["${module.vpc.database_subnets}"]
-  multi_az          = "${var.database_multi_az}"
+  engine                      = "postgres"
+  engine_version              = "${var.database_engine_version}"
+  instance_class              = "${var.database_instance_type}"
+  allocated_storage           = "${var.database_allocated_storage}"
+  storage_encrypted           = "${var.database_storage_encrypted}"
+  subnet_ids                  = ["${module.vpc.database_subnets}"]
+  multi_az                    = "${var.database_multi_az}"
+  allow_major_version_upgrade = "${var.database_allow_major_version_upgrade}"
 
   # NOTE: Do NOT use 'user' as the value for 'username' as it throws:
   # "Error creating DB Instance: InvalidParameterValue: MasterUsername
