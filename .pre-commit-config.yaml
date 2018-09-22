@@ -1,0 +1,13 @@
+repos:
+- repo: https://github.com/thlorenz/doctoc
+  sha: v1.3.0
+  hooks:
+    -   id: doctoc
+- repo: git://github.com/pre-commit/pre-commit-hooks
+  sha: v1.2.0
+  hooks:
+    -   id: trailing-whitespace
+- repo: git://github.com/antonbabenko/pre-commit-terraform
+  sha: v1.4.0
+  hooks:
+    - id: terraform_fmt
