@@ -1,5 +1,5 @@
-variable "name" {
-  description = "VPC name"
+variable "project_name" {
+  description = "The project name"
 }
 
 variable "cidr" {

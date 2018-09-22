@@ -24,12 +24,12 @@ resource "aws_security_group" "redis" {
   }
 
   tags {
-    Name = "${var.name}-redis"
+    Name = "${var.project_name}-redis"
   }
 }
 
 resource "aws_elasticache_subnet_group" "default" {
-  name        = "${var.name}-redis-subnet-group"
+  name        = "${var.project_name}-redis-subnet-group"
   description = "Private subnets for the redis instances"
 
   subnet_ids = [
@@ -38,8 +38,8 @@ resource "aws_elasticache_subnet_group" "default" {
 }
 
 resource "aws_elasticache_replication_group" "redis" {
-  replication_group_id          = "${var.name}-redis"
-  replication_group_description = "${var.name}-redis ${var.redis_engine_version}"
+  replication_group_id          = "${var.project_name}-redis"
+  replication_group_description = "${var.project_name}-redis ${var.redis_engine_version}"
   number_cache_clusters         = "${var.redis_number_cache_clusters}"
   automatic_failover_enabled    = "${var.redis_automatic_failover_enabled}"
   availability_zones            = ["${slice(var.azs, 0, var.redis_number_cache_clusters)}"]
@@ -59,6 +59,6 @@ resource "aws_elasticache_replication_group" "redis" {
   }
 
   tags {
-    Name = "${var.name}-redis"
+    Name = "${var.project_name}-redis"
   }
 }

@@ -29,7 +29,7 @@ resource "aws_security_group" "nat_internal" {
   }
 
   tags {
-    Name = "${var.name}-nat-internal"
+    Name = "${var.project_name}-nat-internal"
   }
 }
 
@@ -113,13 +113,13 @@ resource "aws_security_group" "nat" {
   }
 
   tags {
-    Name = "${var.name}-nat-external"
+    Name = "${var.project_name}-nat-external"
   }
 }
 
 module "nat" {
   source             = "github.com/terraform-community-modules/tf_aws_nat"
-  name               = "${var.name}"
+  name               = "${var.project_name}"
   instance_type      = "${var.nat_instance_type}"
   instance_count     = "${var.nat_instance_count}"
   aws_key_name       = "${var.aws_key_name}"

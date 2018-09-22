@@ -32,7 +32,7 @@ resource "aws_security_group" "bastion" {
   }
 
   tags {
-    Name = "${var.name}-bastion"
+    Name = "${var.project_name}-bastion"
   }
 }
 
@@ -48,6 +48,6 @@ resource "aws_instance" "bastion" {
   ]
 
   tags {
-    Name = "${var.name}-bastion"
+    Name = "${var.project_name}-bastion"
   }
 }
