@@ -64,11 +64,10 @@ To verify:
 Usage
 -----
 
-Building the cluster is broken up into three operations:
+Building the cluster is broken up into two parts:
 
-1) Provision the ECR regristry and upload the application docker image to it.
-2) Provision the VPC with RDS and ElastiCache clusters and EC2 instances.
-3) Provision the ECS cluster with the sevice and task definitions.
+1) Provision the VPC with; ECS respoitory, RDS and ElastiCache clusters, EC2 instances.
+2) Provision the ECS cluster with the service and task definitions.
 
 
 The following steps will walk you through the process:
@@ -77,43 +76,36 @@ The following steps will walk you through the process:
 
     git clone https://github.com/dpetzold/terraform-django-ecs.git
 
-2. Copy the sample env to .env and edit it with your information::
+6. Start your terrform project::
+
+    mkdir -p <yourproject>/terraform
+    cp -R examples/vpc <yourproject>/terraform
+    cp -R examples/ecs <yourproject>/terraform
+
+2. Create the AWS key pair::
 
     aws ec2 create-key-pair --key-name ${PROJECT_NAME} \
         --output text --query KeyMaterial > ${PROJECT_NAME}
     chmod 400 ${PROJECT_NAME}
     mv ${PROJECT_NAME} ~/.ssh
 
-3. Build the ECR registry::
+4. Upload your docker image to to the ECR repository::
 
-    ./apply ecr
-
-    It will output the docker repository url used below.
-
-4. Upload your docker image to it::
-
-    cd project
+    cd <project>
     `aws ecr get-login --region us-east-1`
-    docker build -t repo/project:version .
-    docker push repo/project:version
+    export PROJECT_IMAGE="${REPO}/${PROJECT_NAME}:${PROJECT_VERSION}"
+    docker build -t ${PROJECT_IMAGE}
+    docker push ${PROJECT_IMAGE}
 
-5. Update the env file with the ARN to the docker image::
+7. Update the `terraform.tfvars` file with the output::
 
-    TF_VAR_docker_image="repo/project:version"
-
-6. Build the VPC::
-
-   ./apply vpc
-
-7. Update the env file with the output::
-
-    TF_VAR_vpc_id="vpc-????????"
-    TF_VAR_public_subnet_id="subnet-????????"
-    TF_VAR_private_subnet_id="subnet-????????"
+    vpc_id="vpc-????????"
+    public_subnets=["subnet-1","subnet-2","subnet-3"]
+    private_subnets=["subnet-4","subnet-5","subnet-6"]
 
 8. Build the ECS cluster::
 
-   ./apply ecs
+    cd <yourproject>/terraform/ecs
 
 9. Initialize your database. Get the hostname of one of the running EC2
    instances and make sure ssh from your host is allowed in the security
