@@ -16,6 +16,7 @@ module "vpc" {
   source         = "../../modules/vpc"
   name           = "test-example"
   aws_key_name   = "test-example"
-  enable_bastion = true
-  azs            = ["us-west-2a", "us-west-2b", "us-west-2c"]
+  aws_key_location = "/home/derrick/.ssh/test-example"
+  enable_bastion   = true
+  azs              = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
