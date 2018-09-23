@@ -1,8 +1,23 @@
-output "region" {
-  description = "Region we created the resources in."
-  value       = "${var.region}"
+output "vpc_id" {
+  value = "${module.vpc.vpc_id}"
 }
 
-output "azs" {
-  value = ["${slice(data.aws_availability_zones.available.names, 0, 3)}"]
+output "public_subnets" {
+  value = "${module.vpc.public_subnets}"
+}
+
+output "private_subnets" {
+  value = "${module.vpc.private_subnets}"
+}
+
+output "postgres_endpoint" {
+  value = "${module.vpc.postgres_endpoint}"
+}
+
+output "postgres_read_endpoint" {
+  value = "${module.vpc.postgres_read_endpoint}"
+}
+
+output "redis_endpoint" {
+  value = "${module.vpc.redis_endpoint}"
 }
