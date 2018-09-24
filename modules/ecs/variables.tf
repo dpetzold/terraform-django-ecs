@@ -2,17 +2,7 @@ variable "project_name" {
   description = "The name of the project."
 }
 
-variable "aws_access_key" {
-  description = "The AWS access key."
-}
-
-variable "aws_secret_key" {
-  description = "The AWS secret key."
-}
-
-variable "aws_cloudfront_distribution" {
-  description = "The AWS secret key."
-}
+variable "aws_cloudfront_distribution" {}
 
 variable "public_key" {
   description = "The public key."
