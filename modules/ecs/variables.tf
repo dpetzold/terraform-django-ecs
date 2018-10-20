@@ -8,54 +8,16 @@ variable "public_key" {
   description = "The public key."
 }
 
-variable "aws_region" {
-  description = "The AWS region to create resources in."
-  default     = "us-west-2"
-}
-
-variable "remote_state_bucket" {
-  description = "The name of the s3 bucket to store the remote state in."
-  default     = "terraform-state.example.com"
-}
-
 variable "vpc_id" {
   description = "The id of the vpc to launch in."
 }
 
-variable "public_subnet_id" {
+variable "public_subnets" {
   description = "The id of the private subnet to launch in."
 }
 
-variable "private_subnet_id" {
+variable "private_subnets" {
   description = "The id of the private subnet to launch in."
-}
-
-variable "ecs_remote_state_key" {
-  description = "The name of the key to store the remote state in."
-  default     = "vpc-terraform.tfstate"
-}
-
-variable "ecs_cluster_name" {
-  description = "The name of the Amazon ECS cluster."
-  default     = "default"
-}
-
-/* ECS optimized AMIs per region */
-variable "amis" {
-  default = {
-    ap-northeast-1 = "ami-b3afa2dd"
-    ap-southeast-1 = "ami-0cb0786f"
-    ap-southeast-2 = "ami-cf6342ac"
-    eu-west-1      = "ami-77ab1504"
-    us-east-1      = "ami-33b48a59"
-    us-west-1      = "ami-26f78746"
-    us-west-2      = "ami-65866a05"
-  }
-}
-
-variable "availability_zones" {
-  default     = "us-east-2a,us-east-2c,us-east-2d"
-  description = "The availability zones in this environment (must be a comma-deliminated list of availability zones with no spaces)"
 }
 
 variable "instance_type" {
@@ -75,25 +37,6 @@ variable "host_port" {
 variable "container_port" {
   description = "The container port"
   default     = "5000"
-}
-
-variable "bastion_aws_region" {
-  description = "The bastion region"
-  default     = "us-west-2"
-}
-
-variable "vpc_availability_zone" {
-  description = "The vpc availability zone"
-  default     = "us-west-2a,"
-}
-
-# Ubuntu 14.04
-variable "bastion_aws_amis" {
-  description = "The bastion amis"
-
-  default = {
-    us-west-2 = "ami-5189a661"
-  }
 }
 
 variable "aws_autoscaling_group_min_size" {
@@ -117,6 +60,7 @@ variable "docker_image" {
 
 # Django
 variable "secure_ssl_redirect" {
+  default     = "false"
   description = ""
 }
 
@@ -125,7 +69,7 @@ variable "secret_key" {
 }
 
 variable "settings_module" {
-  description = ""
+  description = "config.settings.production"
 }
 
 variable "storage_bucket_name" {
@@ -134,30 +78,19 @@ variable "storage_bucket_name" {
 
 variable "database_url" {
   description = ""
-}
-
-variable "sentry_dsn" {
-  description = ""
-}
-
-variable "sendgrid_username" {
-  description = ""
-}
-
-variable "sendgrid_password" {
-  description = ""
+  default     = "postgres.internal"
 }
 
 variable "compress_enabled" {
-  description = ""
+  description = "True"
 }
 
 variable "compress_offline" {
-  description = ""
+  description = "True"
 }
 
 variable "compress_root" {
-  description = ""
+  description = "/app"
 }
 
 variable "compress_url" {
@@ -165,7 +98,7 @@ variable "compress_url" {
 }
 
 variable "static_url" {
-  description = ""
+  description = "/static/"
 }
 
 variable "static_host" {
@@ -184,20 +117,13 @@ variable "keypair_name" {
   description = ""
 }
 
-variable "newrelic_license_key" {
-  description = ""
-}
-
-variable "newrelic_config_file" {
-  description = ""
-}
-
 variable "uwsgi_processes" {
-  description = ""
+  description = "3"
 }
 
 variable "uwsgi_harakiki" {
   description = ""
+  default     = "60"
 }
 
 variable "broker_url" {
@@ -216,22 +142,32 @@ variable "allowed_hosts" {
   description = ""
 }
 
-variable "varnish_host_port" {
-  description = ""
-  default     = "8888"
-}
-
-variable "varnish_container_port" {
-  description = ""
-  default     = "80"
-}
-
-variable "varnish_health_check_url" {
-  description = ""
-  default     = "/200/"
-}
-
 variable "redis_host" {
   description = ""
-  default     = "uwsgi.internal"
+  default     = "redis.internal"
+}
+
+variable "newrelic_license_key" {
+  description = ""
+  default     = ""
+}
+
+variable "newrelic_config_file" {
+  description = ""
+  default     = ""
+}
+
+variable "sentry_dsn" {
+  description = ""
+  default     = ""
+}
+
+variable "sendgrid_username" {
+  description = ""
+  default     = ""
+}
+
+variable "sendgrid_password" {
+  description = ""
+  default     = ""
 }
