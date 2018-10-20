@@ -24,17 +24,6 @@ resource "aws_security_group" "ecs" {
     ]
   }
 
-  ingress {
-    from_port = 8888
-    to_port   = 8888
-    protocol  = "tcp"
-
-    security_groups = [
-      "${aws_security_group.bastion.id}",
-      "${aws_security_group.varnish-elb.id}",
-    ]
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -52,15 +41,12 @@ resource "aws_ecs_cluster" "default" {
 }
 
 resource "aws_launch_configuration" "ecs" {
-  name                 = "${var.project_name}"
-  image_id             = "${lookup(var.amis, var.aws_region)}"
-  instance_type        = "${var.instance_type}"
-  key_name             = "${var.keypair_name}"
-  iam_instance_profile = "${aws_iam_instance_profile.ecs.id}"
-  security_groups      = ["${aws_security_group.ecs.id}"]
-
-  // XXX: These creds shouldn't be required with the role
-  user_data                   = "#!/bin/bash\necho 'ECS_CLUSTER=${aws_ecs_cluster.default.name}\nAWS_ACCESS_KEY_ID=${var.aws_access_key}\nAWS_SECRET_ACCESS_KEY=${var.aws_secret_key}\nAWS_DEFAULT_REGION=${var.aws_region}' > /etc/ecs/ecs.config"
+  name                        = "${var.project_name}"
+  image_id                    = "${lookup(var.amis, var.aws_region)}"
+  instance_type               = "${var.instance_type}"
+  key_name                    = "${var.keypair_name}"
+  iam_instance_profile        = "${aws_iam_instance_profile.ecs.id}"
+  security_groups             = ["${aws_security_group.ecs.id}"]
   associate_public_ip_address = false
 }
 

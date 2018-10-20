@@ -2,11 +2,9 @@ variable "project_name" {
   description = "The name of the project."
 }
 
-variable "aws_cloudfront_distribution" {}
+variable "aws_region" {}
 
-variable "public_key" {
-  description = "The public key."
-}
+variable "aws_cloudfront_distribution" {}
 
 variable "vpc_id" {
   description = "The id of the vpc to launch in."
@@ -66,10 +64,11 @@ variable "secure_ssl_redirect" {
 
 variable "secret_key" {
   description = ""
+  default     = ""
 }
 
 variable "settings_module" {
-  description = "config.settings.production"
+  default = "config.settings.production"
 }
 
 variable "storage_bucket_name" {
@@ -82,23 +81,24 @@ variable "database_url" {
 }
 
 variable "compress_enabled" {
-  description = "True"
+  default = "True"
 }
 
 variable "compress_offline" {
-  description = "True"
+  default = "True"
 }
 
 variable "compress_root" {
-  description = "/app"
+  default = "/app"
 }
 
 variable "compress_url" {
   description = ""
+  default     = ""
 }
 
 variable "static_url" {
-  description = "/static/"
+  default = "/static/"
 }
 
 variable "static_host" {
@@ -118,7 +118,8 @@ variable "keypair_name" {
 }
 
 variable "uwsgi_processes" {
-  description = "3"
+  description = ""
+  default     = "3"
 }
 
 variable "uwsgi_harakiki" {
@@ -128,6 +129,7 @@ variable "uwsgi_harakiki" {
 
 variable "broker_url" {
   description = ""
+  default     = "rabbitmq.internal"
 }
 
 variable "internal_zone_id" {
@@ -135,7 +137,7 @@ variable "internal_zone_id" {
 }
 
 variable "admin_url" {
-  description = "admin"
+  default = "admin"
 }
 
 variable "allowed_hosts" {
@@ -143,8 +145,7 @@ variable "allowed_hosts" {
 }
 
 variable "redis_host" {
-  description = ""
-  default     = "redis.internal"
+  default = "redis.internal"
 }
 
 variable "newrelic_license_key" {

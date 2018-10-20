@@ -58,14 +58,6 @@
           "value": "${settings_module}"
         },
         {
-          "name": "DJANGO_AWS_ACCESS_KEY_ID",
-          "value": "${aws_access_key}"
-        },
-        {
-          "name": "DJANGO_AWS_SECRET_ACCESS_KEY",
-          "value": "${aws_secret_key}"
-        },
-        {
           "name": "DJANGO_AWS_REGION",
           "value": "${aws_region}"
         },
@@ -112,10 +104,6 @@
         {
           "name": "ADMIN_URL",
           "value": "${admin_url}"
-        },
-        {
-          "name": "VARNISH_HOST_PORT",
-          "value": "${varnish_host_port}"
         }
       ],
       "volumesFrom": [],

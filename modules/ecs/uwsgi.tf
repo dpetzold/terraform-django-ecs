@@ -113,8 +113,6 @@ resource "template_file" "uwsgi_task" {
     static_url                  = "${var.static_url}"
     secret_key                  = "${var.secret_key}"
     settings_module             = "${var.settings_module}"
-    aws_access_key              = "${var.aws_access_key}"
-    aws_secret_key              = "${var.aws_secret_key}"
     aws_region                  = "${var.aws_region}"
     storage_bucket_name         = "${var.storage_bucket_name}"
     database_url                = "${var.database_url}"
@@ -129,7 +127,6 @@ resource "template_file" "uwsgi_task" {
     uwsgi_processes             = "${var.uwsgi_processes}"
     uwsgi_harakiki              = "${var.uwsgi_harakiki}"
     admin_url                   = "${var.admin_url}"
-    varnish_host_port           = "${var.varnish_host_port}"
     redis_host                  = "${var.redis_host}"
   }
 }

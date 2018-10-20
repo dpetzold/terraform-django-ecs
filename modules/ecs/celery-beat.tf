@@ -22,8 +22,6 @@ resource "template_file" "celery-beat-task" {
     secure_ssl_redirect  = "${var.secure_ssl_redirect}"
     secret_key           = "${var.secret_key}"
     settings_module      = "${var.settings_module}"
-    aws_access_key       = "${var.aws_access_key}"
-    aws_secret_key       = "${var.aws_secret_key}"
     aws_region           = "${var.aws_region}"
     storage_bucket_name  = "${var.storage_bucket_name}"
     database_url         = "${var.database_url}"
