@@ -14,10 +14,12 @@ variable "vpc_id" {
 
 variable "public_subnets" {
   description = "The id of the private subnet to launch in."
+  type        = "list"
 }
 
 variable "private_subnets" {
   description = "The id of the private subnet to launch in."
+  type        = "list"
 }
 
 variable "instance_type" {
