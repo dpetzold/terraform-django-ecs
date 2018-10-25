@@ -1,13 +1,17 @@
+output "project_name" {
+  value = "${var.project_name}"
+}
+
 output "vpc_id" {
   value = "${module.vpc.vpc_id}"
 }
 
 output "public_subnets" {
-  value = "${module.vpc.public_subnets}"
+  value = ["${module.vpc.public_subnets}"]
 }
 
 output "private_subnets" {
-  value = "${module.vpc.private_subnets}"
+  value = ["${module.vpc.private_subnets}"]
 }
 
 output "repository.arn" {
@@ -50,4 +54,12 @@ output "bastion_public_ip" {
 
 output "nat_private_ips" {
   value = ["${module.nat.private_ips}"]
+}
+
+output "internal_zone_id" {
+  value = "${aws_route53_zone.internal.id}"
+}
+
+output "keypair_name" {
+  value = "${var.aws_key_name}"
 }
