@@ -4,7 +4,9 @@ variable "project_name" {
 
 variable "aws_region" {}
 
-variable "aws_cloudfront_distribution" {}
+variable "aws_cloudfront_distribution" {
+  default = ""
+}
 
 variable "vpc_id" {
   description = "The id of the vpc to launch in."
@@ -102,19 +104,19 @@ variable "static_url" {
 }
 
 variable "static_host" {
-  description = ""
+  default = ""
 }
 
 variable "staticfiles_storage" {
-  description = ""
+  default = ""
 }
 
 variable "ssl_certificate_id" {
-  description = ""
+  default = ""
 }
 
 variable "keypair_name" {
-  description = ""
+  default = ""
 }
 
 variable "uwsgi_processes" {
@@ -141,7 +143,7 @@ variable "admin_url" {
 }
 
 variable "allowed_hosts" {
-  description = ""
+  default = ""
 }
 
 variable "redis_host" {

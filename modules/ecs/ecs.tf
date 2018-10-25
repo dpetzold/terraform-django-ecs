@@ -53,7 +53,10 @@ data "aws_ami" "ecs" {
     values = ["hvm"]
   }
 
-  owner_alias = ["amazon"] # Canonical
+  filter {
+    name   = "owner_alias"
+    values = ["amazon"]
+  }
 }
 
 resource "aws_launch_configuration" "ecs" {
