@@ -93,11 +93,11 @@ resource "aws_ecs_service" "uwsgi-service" {
 
 resource "aws_ecs_task_definition" "uwsgi-task" {
   family                = "uwsgi"
-  container_definitions = "${template_file.uwsgi_task.rendered}"
+  container_definitions = "${data.template_file.uwsgi_task.rendered}"
 }
 
-resource "template_file" "uwsgi_task" {
-  template = "task-definitions/uwsgi.json"
+data "template_file" "uwsgi_task" {
+  template = "${file("${path.module}/task-definitions/uwsgi.json")}"
 
   vars {
     project_name                = "${var.project_name}"

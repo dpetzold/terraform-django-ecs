@@ -5,7 +5,7 @@ resource "aws_iam_role" "ecs_role" {
 
 resource "aws_iam_role_policy" "ecs_service_role_policy" {
   name   = "ecs_service_role_policy"
-  policy = "${template_file.ecs_service_role_policy.rendered}"
+  policy = "${data.template_file.ecs_service_role_policy.rendered}"
   role   = "${aws_iam_role.ecs_role.id}"
 }
 
@@ -16,7 +16,19 @@ resource "aws_iam_role_policy" "ecs_instance_role_policy" {
 }
 
 resource "aws_iam_instance_profile" "ecs" {
-  name  = "ecs-instance-profile"
-  path  = "/"
-  roles = ["${aws_iam_role.ecs_role.name}"]
+  name = "ecs-instance-profile"
+  path = "/"
+  role = "${aws_iam_role.ecs_role.name}"
+}
+
+/*
+data "template_file" "project_policy" {
+  template = "${file("${path.module}/policies/project.json")}"
+  vars     = {}
+}
+*/
+
+data "template_file" "ecs_service_role_policy" {
+  template = "${file("${path.module}/policies/ecs-service-role-policy.json")}"
+  vars     = {}
 }

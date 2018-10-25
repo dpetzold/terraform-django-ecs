@@ -10,11 +10,11 @@ resource "aws_ecs_service" "celery-beat-service" {
 
 resource "aws_ecs_task_definition" "celery-beat-task" {
   family                = "celery-beat"
-  container_definitions = "${template_file.celery-beat-task.rendered}"
+  container_definitions = "${data.template_file.celery-beat-task.rendered}"
 }
 
-resource "template_file" "celery-beat-task" {
-  template = "task-definitions/celery-beat.json"
+data "template_file" "celery-beat-task" {
+  template = "${file("${path.module}/task-definitions/celery-beat.json")}"
 
   vars {
     project_name         = "${var.project_name}"

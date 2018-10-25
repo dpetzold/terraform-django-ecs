@@ -54,7 +54,7 @@ data "aws_ami" "ecs" {
   }
 
   filter {
-    name   = "owner_alias"
+    name   = "owner-alias"
     values = ["amazon"]
   }
 }
@@ -76,14 +76,4 @@ resource "aws_autoscaling_group" "ecs" {
   min_size             = "${var.aws_autoscaling_group_min_size}"
   max_size             = "${var.aws_autoscaling_group_max_size}"
   desired_capacity     = "${var.aws_autoscaling_group_desired_capacity}"
-}
-
-resource "template_file" "project_policy" {
-  template = "policies/project.json"
-  vars     = {}
-}
-
-resource "template_file" "ecs_service_role_policy" {
-  template = "policies/ecs-service-role-policy.json"
-  vars     = {}
 }
