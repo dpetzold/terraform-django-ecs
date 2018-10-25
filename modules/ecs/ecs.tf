@@ -40,9 +40,25 @@ resource "aws_ecs_cluster" "default" {
   name = "${var.project_name}"
 }
 
+data "aws_ami" "ecs" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["amzn-ami-2018.03.h-amazon-ecs-optimized"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owner_alias = ["amazon"] # Canonical
+}
+
 resource "aws_launch_configuration" "ecs" {
   name                        = "${var.project_name}"
-  image_id                    = "${lookup(var.amis, var.aws_region)}"
+  image_id                    = "${data.aws_ami.ecs.id}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.keypair_name}"
   iam_instance_profile        = "${aws_iam_instance_profile.ecs.id}"
