@@ -53,7 +53,7 @@ resource "aws_launch_configuration" "ecs" {
 resource "aws_autoscaling_group" "ecs" {
   name                 = "${var.project_name}"
   launch_configuration = "${aws_launch_configuration.ecs.name}"
-  vpc_zone_identifier  = ["${var.public_subnet_id}"]
+  vpc_zone_identifier  = ["${var.public_subnets}"]
   min_size             = "${var.aws_autoscaling_group_min_size}"
   max_size             = "${var.aws_autoscaling_group_max_size}"
   desired_capacity     = "${var.aws_autoscaling_group_desired_capacity}"

@@ -49,7 +49,7 @@ resource "aws_route53_record" "uwsgi-internal" {
 
 resource "aws_elb" "uwsgi-elb" {
   name                = "uwsgi"
-  subnets             = ["${var.public_subnet_id}"]
+  subnets             = ["${var.public_subnets}"]
   security_groups     = ["${aws_security_group.uwsgi-elb.id}"]
   connection_draining = false
   internal            = true
