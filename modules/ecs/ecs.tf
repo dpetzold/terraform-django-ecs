@@ -9,7 +9,7 @@ resource "aws_security_group" "ecs" {
     protocol  = "tcp"
 
     security_groups = [
-      "${aws_security_group.bastion.id}",
+      "${var.bastion_security_group}",
     ]
   }
 
@@ -19,7 +19,7 @@ resource "aws_security_group" "ecs" {
     protocol  = "tcp"
 
     security_groups = [
-      "${aws_security_group.bastion.id}",
+      "${var.bastion_security_group}",
       "${aws_security_group.uwsgi-elb.id}",
     ]
   }

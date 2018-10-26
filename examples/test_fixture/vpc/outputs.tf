@@ -33,3 +33,7 @@ output "keypair_name" {
 output "project_name" {
   value = "${module.vpc.project_name}"
 }
+
+output "bastion_security_group" {
+  value = "${module.vpc.bastion_security_group}"
+}

@@ -4,6 +4,8 @@ variable "project_name" {
 
 variable "aws_region" {}
 
+variable "bastion_security_group" {}
+
 variable "aws_cloudfront_distribution" {
   default = ""
 }

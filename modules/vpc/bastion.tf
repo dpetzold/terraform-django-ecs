@@ -41,7 +41,6 @@ resource "aws_instance" "bastion" {
   instance_type = "${var.bastion_instance_type}"
   key_name      = "${var.aws_key_name}"
   subnet_id     = "${element(module.vpc.public_subnets, 0)}"
-  count         = "${var.enable_bastion ? 1 : 0}"
 
   vpc_security_group_ids = [
     "${aws_security_group.bastion.id}",
