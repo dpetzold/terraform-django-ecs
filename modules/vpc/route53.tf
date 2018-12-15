@@ -1,3 +1,7 @@
+data "aws_route53_zone" "zone" {
+  name = "${var.domain_name}"
+}
+
 resource "aws_route53_zone" "internal" {
   name   = "internal"
   vpc_id = "${module.vpc.vpc_id}"

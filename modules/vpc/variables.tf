@@ -2,6 +2,10 @@ variable "project_name" {
   description = "The project name"
 }
 
+variable "domain_name" {
+  description = "The domain name"
+}
+
 variable "cidr" {
   description = "cidr"
   default     = "10.10.0.0/16"

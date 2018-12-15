@@ -21,6 +21,7 @@ data "aws_availability_zones" "available" {}
 module "vpc" {
   source           = "../../../modules/vpc"
   project_name     = "${var.project_name}"
+  domain_name      = "petzold.io"
   aws_key_name     = "${var.aws_key_name}"
   aws_key_location = "${var.aws_key_location}"
   enable_bastion   = true

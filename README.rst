@@ -103,26 +103,18 @@ The following steps will walk you through the process:
     docker build -t ${PROJECT_IMAGE}
     docker push ${PROJECT_IMAGE}
 
-7. Update the `terraform.tfvars` file with the output::
-
-    vpc_id="vpc-????????"
-    public_subnets=["subnet-1","subnet-2","subnet-3"]
-    private_subnets=["subnet-4","subnet-5","subnet-6"]
-
 8. Build the ECS cluster::
 
     cd <yourproject>/terraform/ecs
     terraform plan
     terraform apply
 
-9. Initialize your database. Get the hostname of one of the running EC2
-   instances and make sure ssh from your host is allowed in the security
-   group. Then scp your database dump and load it::
+9. Initialize your database. scp your database dump to the bastion
+   and load it::
 
-    scp -i <your keypair> database.dump ec2-user@<hostname>
-    ssh -i <your keypair> ec2-user@<hostname>
-    sudo -s
-    yum install -y postgresql94
+    scp -i <your keypair> database.dump ec2-user@bastion.<domain_name>
+    ssh -i <your keypair> ec2-user@bastion.<domain_name>
+    sudo yum install -y postgresql94
     pg_restore -U <database user> -h rds.internal -d postgres -C database.dump
 
 9. Check the status of the cluster from the AWS console. Once the status of the

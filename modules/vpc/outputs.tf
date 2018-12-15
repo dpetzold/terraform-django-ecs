@@ -2,6 +2,14 @@ output "project_name" {
   value = "${var.project_name}"
 }
 
+output "bastion_fqdn" {
+  value = "${aws_route53_record.bastion.fqdn}"
+}
+
+output "bastion_ami_name" {
+  value = "${data.aws_ami.ubuntu.name}"
+}
+
 output "vpc_id" {
   value = "${module.vpc.vpc_id}"
 }

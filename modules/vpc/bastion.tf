@@ -3,7 +3,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-artful-17.10-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-*-18.10*-amd64-server-*"]
   }
 
   filter {
@@ -49,4 +49,15 @@ resource "aws_instance" "bastion" {
   tags {
     Name = "${var.project_name}-bastion"
   }
+}
+
+resource "aws_route53_record" "bastion" {
+  zone_id = "${data.aws_route53_zone.zone.zone_id}"
+  name    = "bastion"
+  type    = "A"
+  ttl     = 600
+
+  records = [
+    "${aws_instance.bastion.public_ip}",
+  ]
 }

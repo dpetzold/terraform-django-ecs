@@ -2,6 +2,14 @@ output "vpc_id" {
   value = "${module.vpc.vpc_id}"
 }
 
+output "bastion_fqdn" {
+  value = "${module.vpc.bastion_fqdn}"
+}
+
+output "bastion_ami_name" {
+  value = "${module.vpc.bastion_ami_name}"
+}
+
 output "public_subnets" {
   value = ["${module.vpc.public_subnets}"]
 }
