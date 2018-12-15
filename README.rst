@@ -114,8 +114,8 @@ The following steps will walk you through the process:
 
     scp -i <your keypair> database.dump ec2-user@bastion.<domain_name>
     ssh -i <your keypair> ec2-user@bastion.<domain_name>
-    sudo yum install -y postgresql94
-    pg_restore -U <database user> -h rds.internal -d postgres -C database.dump
+    sudo apt install -y postgresql-client
+    pg_restore -U postgres -h postgres.internal -d postgres -C database.dump
 
 9. Check the status of the cluster from the AWS console. Once the status of the
    task definition changes from PENDING to ACTIVE the instances will be added

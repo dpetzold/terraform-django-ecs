@@ -22,6 +22,14 @@ output "postgres_endpoint" {
   value = "${module.vpc.postgres_endpoint}"
 }
 
+output "postgres_username" {
+  value = "${module.vpc.postgres_username}"
+}
+
+output "postgres_password" {
+  value = "${module.vpc.postgres_password}"
+}
+
 output "postgres_read_endpoint" {
   value = "${module.vpc.postgres_read_endpoint}"
 }
