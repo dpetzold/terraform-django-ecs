@@ -1,8 +1,23 @@
+terraform {
+  required_providers = {
+    aws      = ">= 2.0"
+    template = "~> 2.1"
+  }
+}
+
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
+locals {
+  azs = "${data.aws_availability_zones.available.names}"
+}
+
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   name   = "${var.project_name}"
   cidr   = "${var.cidr}"
-  azs    = "${var.azs}"
+  azs    = "${local.azs}"
 
   private_subnets     = ["10.10.1.0/24", "10.10.2.0/24", "10.10.3.0/24"]
   public_subnets      = ["10.10.11.0/24", "10.10.12.0/24", "10.10.13.0/24"]

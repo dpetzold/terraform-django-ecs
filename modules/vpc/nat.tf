@@ -131,8 +131,8 @@ module "nat" {
     "${aws_security_group.nat_internal.id}",
   ]
 
-  az_list                = "${var.azs}"
-  subnets_count          = "${length(var.azs)}"
+  az_list                = "${local.azs}"
+  subnets_count          = "${length(local.azs)}"
   route_table_identifier = "private"
   ssh_bastion_host       = "${aws_instance.bastion.public_ip}"
   ssh_bastion_user       = "ubuntu"

@@ -11,10 +11,6 @@ variable "cidr" {
   default     = "10.10.0.0/16"
 }
 
-variable "azs" {
-  type = "list"
-}
-
 variable "aws_key_name" {
   description = "AWS key name"
 }
@@ -71,7 +67,7 @@ variable "database_allocated_storage" {
 
 variable "database_engine_version" {
   description = "Database engine version"
-  default     = "10.4"
+  default     = "10.5"
 }
 
 variable "database_storage_encrypted" {
@@ -108,7 +104,7 @@ variable "database_allow_major_version_upgrade" {
 
 variable "redis_engine_version" {
   description = "redis engine version"
-  default     = "3.2.6"
+  default     = "3.2.10"
 }
 
 variable "redis_port" {
