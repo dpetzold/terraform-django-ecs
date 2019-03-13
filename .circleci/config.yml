@@ -1,0 +1,21 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.9
+    working_directory: /go/src/github.com/dpetzold/terraform-django-ecs
+    steps:
+      - checkout
+      - run:
+          name: "Install terraform"
+          command: |
+            wget -qO terraform.zip https://releases.hashicorp.com/terraform/0.11.12/terraform_0.11.12_linux_amd64.zip
+            unzip terraform.zip
+            chmod 755 terraform
+            mv terraform /go/bin
+      - run:
+          name: "Setup Environment"
+          command: |
+            echo ${PEM_FILE} | base64 --decode > examples/test-fixture/vpc/vpc-test.pem
+      - run: go test -timeout 30m -v ./...
